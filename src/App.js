@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import { TaskForm } from "./components/form";
+import TaskList from "./components/TaskList";
+import { ListContext } from "./contexts/ListContext";
 
+import {useState} from 'react'
 function App() {
+
+  const [tasks,setTasks]=useState([])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <div className="App-header">
+
+    <ListContext.Provider value={{tasks , setTasks}}>
+  <TaskForm />
+
+  <TaskList />
+  </ListContext.Provider>
+  </div>
+  
+  )
 }
 
 export default App;
